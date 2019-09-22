@@ -1,0 +1,4 @@
+(executable
+ (name main)
+ (libraries mad core_kernel)
+ (preprocess (pps ppx_jane)))

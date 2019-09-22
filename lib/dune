@@ -1,0 +1,5 @@
+(library
+ (name mad)
+ (libraries core_kernel)
+ (inline_tests)
+ (preprocess (pps ppx_jane)))
