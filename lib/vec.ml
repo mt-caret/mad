@@ -12,7 +12,7 @@ let equal (t1 , l1) (t2, l2) ~equal =
   if !l1 <> !l2 then false else
   let rec go i accum = 
     if i >= !l1 then accum else
-    go (i + 1) (accum && equal (get (t1, l1) i) (get (t2, l2) i))
+    go (i + 1) (accum && equal !t1.(i) !t2.(i))
   in go 0 true
 ;;
 
@@ -23,14 +23,14 @@ let set (t, l) i x =
 ;; 
 
 let push (t, l) x =
-  if !l = 0 then
+  if !l = 0 then begin
     t := Array.create ~len:1 x
-  else begin
+  end else begin
     if !l = (Array.length !t) then
-      t := Array.append !t !t;
+      t := Array.append !t (Array.copy !t);
     !t.(!l) <- x;
-    l := !l + 1
-  end
+  end;
+  l := !l + 1
 ;;
 
 let create () =

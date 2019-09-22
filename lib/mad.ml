@@ -69,7 +69,6 @@ module Var = struct
   let grad { tape; value = _; index } =
     let len = Ref.create (Vec.length tape) in
     let grads = Array.create ~len:!len 0. in
-    printf "%d, %d" !len index;
     grads.(index) <- 1.;
     len := !len - 1;
     while !len >= 0 do
